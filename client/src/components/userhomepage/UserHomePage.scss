@@ -1,0 +1,12 @@
+@import "../../assets/scss/layout/card";
+@import "../../assets/scss/abstract/fonts";
+@import "../../assets/scss/abstract/colors";
+@import "../../assets/scss/components/buttons";
+
+.bghomeimg {
+    background-image: url("../../assets/images/bg-homepage.jpg");
+    background-repeat: no-repeat;
+    background-size:100% 100vh;
+    min-height: 100vh;
+    opacity: 0.93;
+}

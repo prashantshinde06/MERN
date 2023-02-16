@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@100;600&family=Roboto+Slab:wght@100&family=Roboto:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@100;400;600&family=Roboto+Slab:wght@100&family=Roboto:wght@500;700&display=swap');
+
+
+@mixin poppins-regular{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400px;
+}
+
+@mixin open-sans-light {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+}
+
+@mixin open-sans-regular {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+}
+
+@mixin open-sans-medium {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+}
+
+@mixin open-sans-semibold {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+}
+
+@mixin open-sans-bold {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+}
