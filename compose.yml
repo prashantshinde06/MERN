@@ -1,0 +1,39 @@
+services:
+  web-app:
+    build: ./client
+    ports:
+      - "5000:3000"   # Exposes frontend to host on 5000
+    networks:
+      - my-web-app-net
+    depends_on:
+      - backend-app
+
+  backend-app:
+    build: ./server
+    # Do NOT expose backend to host if internal only
+    # ports:
+    #   - "4200:4200"
+    env_file:
+      - ./server/.env   # load backend environment variables
+    depends_on:
+      - mysql
+    networks:
+      - my-web-app-net
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Prashant2932
+      MYSQL_DATABASE: userdata
+    volumes:
+      - ./server/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - my-web-app-net
+    # Optional: remove ports if you do NOT want host access
+    # ports:
+    #   - "3306:3306"
+
+networks:
+  my-web-app-net:
+    driver: bridge

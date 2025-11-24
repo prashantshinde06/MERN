@@ -6,7 +6,7 @@ export const router = express.Router();
 
 router.post("/insertData", async function (req: Request, res: Response) {
   const data = req.body;
-  // console.log(data);
+  console.log(data);
   userRegistrationController.registrationForm(req,res,data);
 
 });

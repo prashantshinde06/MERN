@@ -20,7 +20,7 @@ function UserRegistration() {
     const userData  = {...formData,userPass:hashPass}
     
     axios
-      .post("http://localhost:4200/insertData",userData)
+      .post("http://backend-app:4200/insertData",userData)
       .then((response: any) => {
         if (response.data.status === false) {
           toast.error("User Email Already Exist..", {

@@ -2,7 +2,7 @@ import { Connect, InsertQuery, getQuery } from "../db/dbconn";
 
 const userDataLayer = {
   async insertFormDetails(FormDetails: any) {
-    // console.log(FormDetails,"form insertformdetails");
+    console.log(FormDetails,"form insertformdetails");
     
     const values = [
       FormDetails.userName || null,
@@ -10,6 +10,7 @@ const userDataLayer = {
       FormDetails.userPass || null,
       FormDetails.userRePass || null,
     ];
+    
     const query = `INSERT INTO userdata.registrationdata
 
           (userName,userEmail,userPass)
