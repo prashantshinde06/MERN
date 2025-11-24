@@ -1,3 +1,4 @@
+
 services:
   web-app:
     build:
@@ -6,7 +7,7 @@ services:
     ports:
       - "5000:3000"   # Host 5000 -> Container 3000
     networks:
-      - my-web-app-net
+      - mern-net
     depends_on:
       - backend-app
 
@@ -16,10 +17,10 @@ services:
       dockerfile: Dockerfile
     env_file:
       - ./server/.env
+    networks:
+      - mern-net
     depends_on:
       - mysql
-    networks:
-      - my-web-app-net
 
   mysql:
     image: mysql:8.0
@@ -30,11 +31,8 @@ services:
     volumes:
       - ./server/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - my-web-app-net
-    # Uncomment below if you want host access to MySQL
-    # ports:
-    #   - "3306:3306"
+      - mern-net
 
 networks:
-  my-web-app-net:
+  mern-net:
     driver: bridge

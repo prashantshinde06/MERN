@@ -1,14 +1,12 @@
 FROM node:20-alpine AS client-builder
 
-WORKDIR /app/client
+WORKDIR /app
 
-# Install dependencies
-COPY client/package*.json ./
+COPY package*.json ./
 RUN npm install --force
 
-# Copy client source
-COPY client/ ./
+COPY . .
 
 EXPOSE 3000
-# CMD ["npm","run" ,"start"]   # start React app
+
 CMD ["npm", "run", "start", "--", "--host", "0.0.0.0"]
