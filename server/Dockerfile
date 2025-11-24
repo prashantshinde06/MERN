@@ -1,4 +1,4 @@
-FROM node:20-alpine AS server-builder
+FROM node:20-slim
 
 WORKDIR /app
 

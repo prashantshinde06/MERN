@@ -1,5 +1,5 @@
-# Use lightweight Node 20 image
-FROM node:20-alpine AS client-builder
+# Use  Node 20 image
+FROM node:20-slim
 
 # Set working directory
 WORKDIR /app
