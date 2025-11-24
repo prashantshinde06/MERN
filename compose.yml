@@ -1,20 +1,21 @@
 services:
   web-app:
-    build: ./client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
     ports:
-      - "5000:3000"   # Exposes frontend to host on 5000
+      - "5000:3000"   # Host 5000 -> Container 3000
     networks:
       - my-web-app-net
     depends_on:
       - backend-app
 
   backend-app:
-    build: ./server
-    # Do NOT expose backend to host if internal only
-    # ports:
-    #   - "4200:4200"
+    build:
+      context: ./server
+      dockerfile: Dockerfile
     env_file:
-      - ./server/.env   # load backend environment variables
+      - ./server/.env
     depends_on:
       - mysql
     networks:
@@ -30,7 +31,7 @@ services:
       - ./server/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - my-web-app-net
-    # Optional: remove ports if you do NOT want host access
+    # Uncomment below if you want host access to MySQL
     # ports:
     #   - "3306:3306"
 
