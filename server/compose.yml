@@ -1,0 +1,33 @@
+services:
+  backend-app:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: backend-app
+    networks:
+      - mern-net
+    depends_on:
+      - mysql
+    ports:
+      - "5001:5001"
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Prashant2932
+      MYSQL_DATABASE: userdata
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./db/init:/docker-entrypoint-initdb.d  # Auto create tables from SQL scripts
+    networks:
+      - mern-net
+
+networks:
+  mern-net:
+
+volumes:
+  mysql-data:
