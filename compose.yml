@@ -1,6 +1,6 @@
 services:
   web-app:
-    build: MERN/client
+    build: ./client
     ports:
       - "5000:3000"   # Host 5000 -> Container 3000
     networks:
@@ -9,7 +9,7 @@ services:
       - backend-app
 
   backend-app:
-    build: MERN/server
+    build: ./server
     networks:
       - mern-net
     depends_on:
