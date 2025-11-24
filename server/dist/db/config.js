@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const MYSQL_HOST = process.env.MY_SQL_DB_HOST || "localhost";
-const MYSQL_DATABASE = process.env.MY_SQL_DB_NAME || "db";
-const MYSQL_USER = process.env.MY_SQL_DB_USERNAME || "user";
-const MYSQL_PASS = process.env.MY_SQL_DB_PASSWORD || "password";
+const MYSQL_HOST = process.env.MY_SQL_DB_HOST;
+const MYSQL_DATABASE = process.env.MY_SQL_DB_NAME;
+const MYSQL_USER = process.env.MY_SQL_DB_USERNAME;
+const MYSQL_PASS = process.env.MY_SQL_DB_PASSWORD;
 const MYSQL = {
     user: MYSQL_USER,
     host: MYSQL_HOST,

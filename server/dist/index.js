@@ -12,7 +12,9 @@ dotenv_1.default.config();
 if (!process.env.PORT) {
     process.exit(1);
 }
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT);
+const HOST = Number(process.env.HOST);
 const app = (0, express_1.default)();
 app.use(body_parser_1.default.json());
 app.use((0, cors_1.default)());
@@ -21,6 +23,9 @@ app.use("/", routes_1.router);
 //     console.log(req.body,"data form react");
 //     res.send("msg from express server");
 // });
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${process.env.PORT}`);
+// app.listen(PORT,'0.0.0.0', () => {
+//   console.log(`Server is running on http://localhost:${process.env.PORT}`);
+// });
+app.listen(PORT, String(HOST), () => {
+    console.log(`Server running on ${HOST}:${PORT}`);
 });

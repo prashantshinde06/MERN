@@ -10,7 +10,8 @@ if (!process.env.PORT) {
   process.exit(1);
 }
 // const PORT = process.env.PORT || 3000;
-const PORT = Number(process.env.PORT) ||3000
+const PORT = Number(process.env.PORT) 
+const HOST = Number(process.env.HOST)
 const app: Express = express();
 
 app.use(bodyParser.json());
@@ -27,6 +28,6 @@ app.use("/", router);
 //   console.log(`Server is running on http://localhost:${process.env.PORT}`);
 // });
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(PORT, String(HOST), () => {
+  console.log(`Server running on ${HOST}:${PORT}`);
 });

@@ -1,9 +1,6 @@
-
 services:
   web-app:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
+    build: MERN/client
     ports:
       - "5000:3000"   # Host 5000 -> Container 3000
     networks:
@@ -12,11 +9,7 @@ services:
       - backend-app
 
   backend-app:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-    env_file:
-      - ./server/.env
+    build: MERN/server
     networks:
       - mern-net
     depends_on:
@@ -29,6 +22,7 @@ services:
       MYSQL_ROOT_PASSWORD: Prashant2932
       MYSQL_DATABASE: userdata
     volumes:
+      - db_data:/var/lib/mysql      # persistent volume for MySQL data
       - ./server/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - mern-net
@@ -36,3 +30,6 @@ services:
 networks:
   mern-net:
     driver: bridge
+
+volumes:
+  db_data:      
