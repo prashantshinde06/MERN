@@ -1,3 +1,5 @@
+@use "../abstract/colors" as *; // <- imports all variables
+@use "../abstract/fonts" as *;
 .submit-btn{
     border: 1px solid $black-color;
     width: 100px;

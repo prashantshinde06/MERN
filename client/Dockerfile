@@ -21,4 +21,4 @@ ENV PORT=3000
 EXPOSE 3000
 
 # Start React dev server
-CMD ["npm", "run", "start", "--", "--host", "0.0.0.0"]
+CMD ["npm", "run", "start"]

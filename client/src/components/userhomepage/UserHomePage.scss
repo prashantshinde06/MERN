@@ -1,7 +1,7 @@
-@import "../../assets/scss/layout/card";
-@import "../../assets/scss/abstract/fonts";
-@import "../../assets/scss/abstract/colors";
-@import "../../assets/scss/components/buttons";
+@use "../../assets/scss/layout/card";
+@use "../../assets/scss/abstract/fonts";
+@use "../../assets/scss/abstract/colors";
+@use "../../assets/scss/components/buttons";
 
 .bghomeimg {
     background-image: url("../../assets/images/bg-homepage.jpg");
