@@ -1,0 +1,14 @@
+services:
+  web-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web-app
+    networks:
+      - mern-net
+    ports:
+      - "5000:3000"
+
+networks:
+  mern-net:
+    driver: bridge
