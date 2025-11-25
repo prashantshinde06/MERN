@@ -44,7 +44,6 @@ services:
       - mern-net
     ports:
       - "5000:3000" # Host 5000 -> Container 3000
-    environment:
 
 volumes:
   mysql-data:
