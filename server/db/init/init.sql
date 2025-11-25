@@ -1,3 +1,5 @@
+USE userdata;
+
 CREATE TABLE IF NOT EXISTS registrationdata (
   id INT AUTO_INCREMENT PRIMARY KEY,
   userName VARCHAR(100) NOT NULL,

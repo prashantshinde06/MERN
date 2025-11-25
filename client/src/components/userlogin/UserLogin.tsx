@@ -17,7 +17,7 @@ function UserLogin() {
     console.log(hashPass, "userlogindata");
     const API_URL = `${window.location.protocol}//${window.location.hostname}:5001`;
     axios
-     .post(`${API_URL}/insertData`, loginData)  
+     .post(`${API_URL}/userLogin`, loginData)  
       .then((response: any) => {
         console.log(response);
         if (response.data.status === false) {
