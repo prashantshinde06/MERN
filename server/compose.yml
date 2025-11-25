@@ -1,33 +1,41 @@
 services:
-  backend-app:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-    container_name: backend-app
-    networks:
-      - mern-net
-    depends_on:
-      - mysql
-    ports:
-      - "5001:5001"
-
   mysql:
     image: mysql:8.0
-    container_name: mysql-db
-    restart: always
+    container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: Prashant2932
       MYSQL_DATABASE: userdata
     ports:
       - "3306:3306"
     volumes:
-      - mysql-data:/var/lib/mysql
-      - ./db/init:/docker-entrypoint-initdb.d  # Auto create tables from SQL scripts
+      - mysql-data:/var/lib/mysql              # <-- named volume for persistence
+      - ./db/init:/docker-entrypoint-initdb.d  # <-- init SQL scripts
     networks:
       - mern-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 10
+      start_period: 10s
 
-networks:
-  mern-net:
+  backend-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend-app
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - mern-net
+    env_file:
+      - ./.env
+    ports:
+      - "5001:4200"
+
 
 volumes:
   mysql-data:
+networks:
+  mern-net:     # <-- network will be created automatically
+    driver: bridge
