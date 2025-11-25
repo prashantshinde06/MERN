@@ -11,6 +11,8 @@ RUN npm install --force
 # Copy all source code
 COPY . .
 
+RUN npm run build 
+
 # Set environment variables so the dev server listens on all interfaces
 ENV HOST=0.0.0.0
 ENV PORT=4200
