@@ -18,9 +18,9 @@ function UserRegistration() {
     // const hashPass = bcrypt.hashSync(formData.userPass, salt);
     const hashPass = CryptoJS.AES.encrypt(formData.userPass, 'secret key 123').toString();
     const userData  = {...formData,userPass:hashPass}
-    
+    const API_URL = `${window.location.protocol}//${window.location.hostname}:5001`;
     axios
-      .post("http://backend-app:4200/insertData",userData)
+      .post(`${API_URL}/insertData`,userData)
       .then((response: any) => {
         if (response.data.status === false) {
           toast.error("User Email Already Exist..", {

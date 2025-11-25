@@ -15,8 +15,9 @@ function UserLogin() {
     const hashPass = CryptoJS.AES.encrypt(formData.userPass, 'secret key 123').toString();
     const loginData  = {...formData,userPass:hashPass}
     console.log(hashPass, "userlogindata");
+    const API_URL = `${window.location.protocol}//${window.location.hostname}:5001`;
     axios
-     .post("http://backend-app:4200/userLogin", loginData)  
+     .post(`${API_URL}/insertData`, loginData)  
       .then((response: any) => {
         console.log(response);
         if (response.data.status === false) {
