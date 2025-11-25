@@ -28,4 +28,5 @@ COPY --from=build /app/dist ./dist
 EXPOSE 3000
 
 # Serve the build on port 3000
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["serve", "-s", "dist", "-l", "3000", "-H", "0.0.0.0"]
+
