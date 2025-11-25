@@ -1,24 +1,31 @@
-# Use  Node 20 image
-FROM node:20-slim
+# Stage 1: Build
+FROM node:20-slim AS build
 
-# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package files and install dependencies
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install --force
 
-# Copy all source code
+# Copy source code
 COPY . .
 
-# Set environment variables for React dev server
-ENV HOST=0.0.0.0
-ENV PORT=3000
+# Build React app
+RUN npm run build
 
-# Expose port 3000 inside container
+# Stage 2: Serve production build
+FROM node:20-slim
+
+WORKDIR /app
+
+# Install static server
+RUN npm install -g serve
+
+# Copy build from previous stage
+COPY --from=build /app/dist ./dist
+
+# Expose port 3000
 EXPOSE 3000
 
-# Start React dev server
-CMD ["npm", "run", "start"]
+# Serve the build on port 3000
+CMD ["serve", "-s", "dist", "-l", "3000"]
